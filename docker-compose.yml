@@ -1,0 +1,39 @@
+version: '3.2'
+services:
+  db:
+    image: postgres:13-alpine
+    ports:
+      - 5433:5432
+    volumes:
+      - ./docker-volume/db:/var/lib/postgresql/data/pg_data
+    environment:
+      POSTGRES_PASSWORD: sso_default
+      POSTGRES_DB: sso_default_db
+      POSTGRES_USER: sso_default
+      POSTGRES_HOST: 0.0.0.0
+      POSTGRES_PORT: 5432
+      PGDATA: /var/lib/postgresql/data/pg_data
+      TZ: GMT+5
+      PGTZ: GMT+5
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: sso_default_pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=mr.yaros@yandex.ru
+      - PGADMIN_DEFAULT_PASSWORD=sso_server
+    volumes:
+      - ./docker-volume/pgadmin:/var/lib/pgadmin
+    ports:
+      - 9000:80
+#  back:
+#    build: .
+#    ports:
+#      - 8080:8080
+#    depends_on:
+#      - db
+#    volumes:
+#      - ./docker-volume/back:/logs
+#    environment:
+#      SPRING_PROFILES_ACTIVE: docker
+volumes:
+  pg_data:

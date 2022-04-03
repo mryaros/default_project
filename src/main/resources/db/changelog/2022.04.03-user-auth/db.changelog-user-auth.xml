@@ -1,0 +1,57 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <property name="uuid_function" value="uuid_generate_v4()" dbms="postgresql"/>
+    <changeSet author="mryaros" id="add_uuid-ossp">
+        <sql stripComments="true">
+            CREATE EXTENSION IF NOT EXISTS "uuid-ossp"
+            <comment>Add uuid-ossp for use in tblscan</comment>
+        </sql>
+    </changeSet>
+
+    <changeSet author="default_project (generated)" id="1649001777883-1">
+        <createTable tableName="t_token">
+            <column name="id" type="VARCHAR(255)" defaultValueComputed="${uuid_function}">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="t_tokenPK"/>
+            </column>
+            <column name="platform_token_object" type="VARCHAR">
+                <constraints nullable="false"/>
+            </column>
+            <column name="refresh_token" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="token" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="default_project (generated)" id="1649001777883-2">
+        <createTable tableName="t_user">
+            <column name="id" type="VARCHAR(255)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="t_userPK"/>
+            </column>
+            <column name="full_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role" type="VARCHAR(255)"/>
+            <column name="username" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="default_project (generated)" id="1649001777883-3">
+        <addUniqueConstraint columnNames="id" constraintName="UC_T_USERID_COL" tableName="t_user"/>
+    </changeSet>
+
+    <changeSet author="default_project (generated)" id="1649001777883-4">
+        <addUniqueConstraint columnNames="username" constraintName="UC_T_USERUSERNAME_COL" tableName="t_user"/>
+    </changeSet>
+
+    <changeSet author="default_project (generated)" id="1649001777883-5">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="t_token" constraintName="FKk6bprnvaavvfya6j2y5p3sq6q" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="t_user" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

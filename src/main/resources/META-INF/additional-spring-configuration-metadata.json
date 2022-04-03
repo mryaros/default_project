@@ -1,0 +1,53 @@
+{
+  "properties": [
+    {
+      "name": "prop.platform.url",
+      "type": "java.lang.String",
+      "description": "Description for prop.platform.url."
+    },
+    {
+      "name": "prop.platform.connectTimeout",
+      "type": "java.lang.String",
+      "description": "Description for prop.platform.connectTimeout."
+    },
+    {
+      "name": "prop.platform.client_id",
+      "type": "java.lang.String",
+      "description": "Description for prop.platform.client_id."
+    },
+    {
+      "name": "prop.platform.client_secret",
+      "type": "java.lang.String",
+      "description": "Description for prop.platform.client_secret."
+    },
+    {
+      "name": "prop.platform.redirect_uri",
+      "type": "java.lang.String",
+      "description": "Description for prop.platform.redirect_uri."
+    },
+    {
+      "name": "jwt.accessTokenSecret",
+      "type": "java.lang.String",
+      "description": "Description for jwt.accessTokenSecret."
+    },
+    {
+      "name": "jwt.refreshTokenSecret",
+      "type": "java.lang.String",
+      "description": "Description for jwt.refreshTokenSecret."
+    },
+    {
+      "name": "front.url",
+      "type": "java.lang.String",
+      "description": "Description for front.url."
+    },
+    {
+      "name": "jwt.accessTokenExpirationTime",
+      "type": "java.lang.String",
+      "description": "Description for jwt.accessTokenExpirationTime."
+    },
+    {
+      "name": "jwt.refreshTokenExpirationTime",
+      "type": "java.lang.String",
+      "description": "Description for jwt.refreshTokenExpirationTime."
+    }
+  ] }
